@@ -60,6 +60,6 @@
                 "tests"
             ],
             "cwd": "${workspaceFolder}",
-        }
-    ]
-}
+            "preLaunchTask": "tsc: build - docs/tsconfig.json"
+            debugp
+            
