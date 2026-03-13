@@ -64,6 +64,8 @@ def checkpoint_icon(arch: Arch, format: FileFormat | None = None, client: Client
         return icon("sd-version-illu")
     elif arch is Arch.illu_v:
         return icon("sd-version-illu-v")
+    elif arch is Arch.aura:
+        return icon("sd-version-aura")
     elif arch is Arch.chroma:
         return icon("sd-version-chroma")
     elif arch.is_qwen_like:
