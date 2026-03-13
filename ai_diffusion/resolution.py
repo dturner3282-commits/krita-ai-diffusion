@@ -145,7 +145,9 @@ class CheckpointResolution(NamedTuple):
     def compute(extent: Extent, arch: Arch, style: Style | None = None):
         arch = Arch.sdxl if arch.is_sdxl_like else arch
         arch = (
-            Arch.flux if arch.is_flux_like or arch is Arch.chroma or arch is Arch.zimage else arch
+            Arch.flux
+            if arch.is_flux_like or arch is Arch.chroma or arch is Arch.zimage or arch is Arch.aura
+            else arch
         )
         arch = Arch.qwen if arch.is_qwen_like else arch
         if style is None or style.preferred_resolution == 0:

@@ -82,6 +82,7 @@ class Arch(Enum):
     flux_k = "Flux Kontext"
     illu = "Illustrious"
     illu_v = "Illustrious v-prediction"
+    aura = "AuraFlow"
     chroma = "Chroma"
     qwen = "Qwen"
     qwen_e = "Qwen Edit"
@@ -118,6 +119,8 @@ class Arch(Enum):
                 return Arch.qwen_e
         if string == "qwen-image":
             return Arch.qwen
+        if string == "aura_flow":
+            return Arch.aura
         if string == "z-image":
             return Arch.zimage
         return None
@@ -154,6 +157,10 @@ class Arch(Enum):
         return self
 
     @property
+    def is_aura_like(self):
+        return self is Arch.aura
+
+    @property
     def has_controlnet_inpaint(self):
         return self is Arch.sd15 or self is Arch.flux
 
@@ -175,7 +182,7 @@ class Arch(Enum):
 
     @property
     def supports_cfg(self):
-        return self not in [Arch.flux, Arch.flux_k]
+        return self not in [Arch.flux, Arch.flux_k, Arch.chroma]
 
     @property
     def is_edit(self):  # edit models make changes to input images
@@ -205,6 +212,8 @@ class Arch(Enum):
                 return ["clip_l", "clip_g"]
             case Arch.flux | Arch.flux_k:
                 return ["clip_l", "t5"]
+            case Arch.aura:
+                return ["t5"]
             case Arch.chroma:
                 return ["t5"]
             case Arch.qwen | Arch.qwen_e | Arch.qwen_e_p:
@@ -223,6 +232,7 @@ class Arch(Enum):
             Arch.flux_k,
             Arch.illu,
             Arch.illu_v,
+            Arch.aura,
             Arch.chroma,
             Arch.qwen,
             Arch.qwen_e,
@@ -729,6 +739,7 @@ search_paths: dict[str, list[str]] = {
     resource_id(ResourceKind.text_encoder, Arch.all, "clip_l"): ["clip_l"],
     resource_id(ResourceKind.text_encoder, Arch.all, "clip_g"): ["clip_g"],
     resource_id(ResourceKind.text_encoder, Arch.all, "t5"): ["t5xxl_fp16", "t5xxl_fp8_e4m3fn", "t5xxl_fp8_e4m3fn_scaled", "t5-v1_1-xxl", "t5"],
+    resource_id(ResourceKind.text_encoder, Arch.aura, "t5"): ["t5xxl_fp16", "t5xxl_fp8_e4m3fn", "t5xxl_fp8_e4m3fn_scaled", "t5-v1_1-xxl", "t5"],
     resource_id(ResourceKind.text_encoder, Arch.all, "qwen"): ["qwen_2.5_vl_7b", "qwen_2", "qwen-2", "qwen"],
     resource_id(ResourceKind.text_encoder, Arch.all, "qwen_3"): ["qwen_3_4b", "qwen_3", "qwen-3"],
     resource_id(ResourceKind.vae, Arch.sd15, "default"): ["vae-ft-mse-840000-ema"],
@@ -738,6 +749,7 @@ search_paths: dict[str, list[str]] = {
     resource_id(ResourceKind.vae, Arch.sd3, "default"): ["sd3"],
     resource_id(ResourceKind.vae, Arch.flux, "default"): ["flux-", "flux_", "flux/", "flux1", "ae.s"],
     resource_id(ResourceKind.vae, Arch.flux_k, "default"): ["flux-", "flux_", "flux/", "flux1", "ae.s"],
+    resource_id(ResourceKind.vae, Arch.aura, "default"): ["aura", "sdxl_vae"],
     resource_id(ResourceKind.vae, Arch.chroma, "default"): ["flux-", "flux_", "flux/", "flux1", "ae.s"],
     resource_id(ResourceKind.vae, Arch.qwen, "default"): ["qwen"],
     resource_id(ResourceKind.vae, Arch.qwen_e, "default"): ["qwen"],

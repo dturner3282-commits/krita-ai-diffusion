@@ -236,6 +236,8 @@ def _base_cost(arch: Arch):
         return 2
     if arch.is_flux_like or arch is Arch.chroma:
         return 4
+    if arch is Arch.aura:
+        return 3
     return 1
 
 

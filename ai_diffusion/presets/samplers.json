@@ -95,5 +95,12 @@
         "steps": 8,
         "minimum_steps": 3,
         "cfg": 1.0
+    },
+    "AuraFlow - Euler simple": {
+        "sampler": "euler",
+        "scheduler": "simple",
+        "steps": 25,
+        "minimum_steps": 4,
+        "cfg": 3.5
     }
 }

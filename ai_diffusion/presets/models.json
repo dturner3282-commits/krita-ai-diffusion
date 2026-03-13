@@ -331,6 +331,17 @@
         }
       ],
       "requirements": "cuda_fp4"
+    },
+    {
+      "id": "checkpoint-auraflow_v0.3-aura",
+      "name": "AuraFlow v0.3",
+      "files": [
+        {
+          "path": "models/checkpoints/auraflow_0.3.safetensors",
+          "url": "https://huggingface.co/fal/AuraFlow-v0.3/resolve/main/auraflow_0.3.safetensors",
+          "sha256": "5a41d58fd2dade752d63b71a32dbb94fbec17c20e9e7fb4f06c4d981c1fba1c6"
+        }
+      ]
     }
   ],
   "upscale": [

@@ -373,9 +373,16 @@ class CustomPackageTab(QWidget):
                 is_expanded=False,
                 parent=self,
             ),
+            "aura": PackageGroupWidget(
+                _("AuraFlow models"),
+                [m for m in optional_models if m.arch is Arch.aura],
+                is_checkable=True,
+                is_expanded=False,
+                parent=self,
+            ),
         }
 
-        for group in ["upscalers", "sd15", "sdxl", "illu", "flux"]:
+        for group in ["upscalers", "sd15", "sdxl", "illu", "flux", "aura"]:
             self._packages[group].changed.connect(self._change_models)
             layout.addWidget(self._packages[group])
 
