@@ -1,7 +1,7 @@
 {
     "name": "AuraFlow",
     "version": 1,
-    "architecture": "auto",
+    "architecture": "aura",
     "checkpoints": [
         "auraflow_0.3.safetensors"
     ],
